@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowBackground"
+    android:clickable="true">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
+        android:background="@color/cards_dialogs">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/time_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="8dp"
+                android:lines="1"
+                android:text="00:00:00"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="false"
+                android:layout_below="@+id/time_all"
+                android:layout_margin="8dp"
+                android:lines="1"
+                android:text="start time"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/primary_text_size" />
+
+            <TextView
+                android:id="@+id/start_time_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/time_all"
+                android:layout_margin="8dp"
+                android:layout_toRightOf="@+id/time"
+                android:lines="1"
+                android:text="time_value"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/primary_text_size" />
+
+            <TextView
+                android:id="@+id/stop_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/time"
+                android:layout_margin="8dp"
+                android:lines="1"
+                android:text="stop_time"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/primary_text_size" />
+
+            <TextView
+                android:id="@+id/stop_time_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/start_time_value"
+                android:layout_margin="8dp"
+                android:layout_toRightOf="@+id/stop_time"
+                android:lines="1"
+                android:text="stop_time_value"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/primary_text_size" />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="88dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@+id/card1"
+        android:background="@color/cards_dialogs"
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="8dp"
+                android:text="distance"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/primary_text_size" />
+
+            <TextView
+                android:id="@+id/distance_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="8dp"
+                android:layout_toRightOf="@+id/distance"
+                android:text="distance_value"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/primary_text_size" />
+
+            <TextView
+                android:id="@+id/speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="false"
+                android:layout_margin="8dp"
+                android:text="speed"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/primary_text_size"
+                android:layout_below="@+id/distance" />
+
+            <TextView
+                android:id="@+id/speed_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="false"
+                android:layout_margin="8dp"
+                android:layout_toRightOf="@+id/speed"
+                android:text="speed_value"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/primary_text_size"
+                android:layout_below="@+id/distance_value" />
+
+            <Button
+                android:id="@+id/stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="16dp"
+                android:text="STOP"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/primary_text_size" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

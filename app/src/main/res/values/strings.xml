@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Tracks</string>
+    <string name="title_activity_main">Map</string>
+    <string name="sign_in">SIGN IN</string>
+</resources>

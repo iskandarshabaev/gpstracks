@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorAcccent</item>
+        <item name="colorAccent">@color/colorAcccent</item>
+
+        <item name="android:windowBackground">@color/windowBackground</item>
+
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
+        <item name="android:progressBarStyle">@style/ProgressBarStyle</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorPrimary">@color/textColorPrimaryInverted</item>
+        <item name="android:textColorSecondary">@color/textColorPrimaryInverted</item>
+    </style>
+
+    <style name="ProgressBarStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorAccent">@color/colorAcccent</item>
+        <item name="colorAccent">@color/colorAcccent</item>
+    </style>
+
+</resources>
