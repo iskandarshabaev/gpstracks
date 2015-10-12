@@ -10,7 +10,7 @@ import android.location.Location;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import com.google.android.gms.maps.model.LatLng;
-import com.sick.tracks.pojo.Position;
+import com.sick.tracks.pojo.LocationInf;
 import com.sick.tracks.views.MainActivity;
 
 import java.util.ArrayList;
@@ -23,8 +23,8 @@ import de.greenrobot.event.Subscribe;
  */
 public class BaseService extends Service {
 
-    LocationBase locationBase;
-    ArrayList<LatLng> points;
+    private LocationBase locationBase;
+    private ArrayList<LatLng> points;
 
     @Override
     public void onCreate() {
@@ -82,7 +82,26 @@ public class BaseService extends Service {
     public void onEvent(Location location) {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         points.add(latLng);
-        Position position = new Position(latLng, points);
-        EventBus.getDefault().post(position);
+        double distance = 0;
+        for (int i = 0; i < points.size() - 1; i++){
+            distance = distance + haversine(points.get(i).latitude, points.get(i).longitude,
+                    points.get(i + 1).latitude, points.get(i + 1).longitude);
+        }
+
+        LocationInf locationInf = new LocationInf(location, points, distance);
+        EventBus.getDefault().post(locationInf);
+    }
+
+    public double haversine(double lat1, double lng1, double lat2, double lng2) {
+        double earthRadius = 6371000; //meters
+        double dLat = Math.toRadians(lat2-lat1);
+        double dLng = Math.toRadians(lng2-lng1);
+        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
+                        Math.sin(dLng/2) * Math.sin(dLng/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double dist = (double) (earthRadius * c);
+
+        return dist;
     }
 }

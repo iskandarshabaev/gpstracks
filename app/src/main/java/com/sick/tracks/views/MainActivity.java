@@ -4,7 +4,6 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -30,12 +28,10 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.sick.tracks.BaseService;
 import com.sick.tracks.Constants;
-import com.sick.tracks.pojo.Position;
 import com.sick.tracks.R;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.sick.tracks.pojo.LocationInf;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -189,6 +185,16 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    public void stopTracking(){
+        Intent intent = new Intent(MainActivity.this, BaseService.class);
+        stopService(intent);
+        int color = getResources().getColor(R.color.green);
+        Drawable image = getResources().getDrawable(R.drawable.play);
+        floatingActionButton.setImageDrawable(image);
+        floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(color));
+        floatingActionButton.setColorFilter(getResources().getColor(R.color.textColorPrimaryInverted));
+    }
+
 
     public int getDistance() {
         return track.getPoints().size();
@@ -256,8 +262,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Subscribe
-    public void onEvent(Position position) {
-        LatLng latLng = position.getLatLng();
+    public void onEvent(LocationInf locationInf) {
+        LatLng latLng = locationInf.getLatLngs().get(locationInf.getLatLngs().size() - 1);
         if (markerOptions == null) {
             markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
@@ -274,9 +280,10 @@ public class MainActivity extends AppCompatActivity {
             mMap.animateCamera(cameraUpdate);
         } else {
             me.setPosition(latLng);
-            track.setPoints(position.getPoints());
+            track.setPoints(locationInf.getLatLngs());
             animateCamera(latLng);
         }
+        fragmentT.onEvent(locationInf);
     }
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {
